@@ -85,12 +85,12 @@ def generate_nginx_config(domain):
 
 
 def create_docker_app():
-    exec_system("docker network create -d bridge web")
+    if os.system("docker network ls -f name=web |grep web") != 0:
+        exec_system("docker network create -d bridge web")
     exec_system("docker run -d --name=v2ray --network web --restart=always "
                 "-v /etc/v2ray/config.json:/etc/v2ray/config.json v2fly/v2fly-core")
     exec_system("docker run -d --name nginx -v /etc/letsencrypt:/etc/letsencrypt --restart=always "
                 "-v /etc/nginx:/etc/nginx/conf.d --network web -p 80:80 -p 443:443 nginx")
-    pass
 
 
 def renew_cert():
@@ -113,6 +113,7 @@ if __name__ == "__main__":
         do_check_certs(args.domain)
         generate_config()
         generate_nginx_config(args.domain)
+        create_docker_app()
         print("init success!")
     elif args.action == "renew":
         renew_cert()
