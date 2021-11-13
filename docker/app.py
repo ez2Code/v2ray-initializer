@@ -28,7 +28,6 @@ def get_resource(resource_name):
 def install_docker():
     if os.system("which docker") == 0:
         return
-    exec_system("apt-get remove docker docker-engine docker.io containerd runc")
     exec_system("apt-get update")
     exec_system("apt-get install -y ca-certificates curl gnupg lsb-release")
     exec_system("curl -fsSL https://download.docker.com/linux/debian/gpg | "
