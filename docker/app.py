@@ -43,6 +43,7 @@ def install_docker():
 def install_certbot():
     if os.system("which certbot") == 0:
         return
+    exec_system("apt-get update")
     exec_system("apt-get install -y snapd")
     exec_system("snap install core")
     exec_system("snap install --classic certbot")
