@@ -9,7 +9,7 @@ import json
 
 CURRENT_DIR = os.path.abspath(os.path.dirname(__file__))
 HOST = "raw.githubusercontent.com"
-RESOURCE_PREFIX = "ez2Code/v2ray-initializer/main/resources/docker"
+RESOURCE_PREFIX = "ez2Code/v2ray-initializer/main/docker"
 LETS_ENCRYPT_CERT_PATH = "/etc/letsencrypt/live"
 
 
